@@ -1,10 +1,9 @@
-// Navigation.js
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginPage from './LoginPage'; // Make sure to import the LoginPage component correctly
-import RegisterPage from './RegisterPage'; // Make sure to import the RegisterPage component correctly
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
+import Dashboard from './Dashboard'; // Import the Dashboard component
 
 const Stack = createStackNavigator();
 
@@ -12,8 +11,10 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* Add the Dashboard screen */}
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
       </Stack.Navigator>
     </NavigationContainer>
   );
