@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
-import Dashboard from './Dashboard'; // Import the Dashboard component
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import Dashboard from '../pages/Dashboard'; // Import the Dashboard component
 
 const Stack = createStackNavigator();
 

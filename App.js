@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import Navigation from './Navigation';
+import Navigation from './routes/Navigation';
 
 const App = () => {
   return <Navigation />;
