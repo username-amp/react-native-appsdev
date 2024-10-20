@@ -5,14 +5,12 @@ const RegisterCurve = () => {
     return (
         <View style={styles.registerCurve}>
           <Svg
-            height="60" // Height of the SVG curve
-            width="100%" // Full width
+            height="60"
+            width="100%"
             style={styles.registerSVG}
           >
             <Path
       d="M0,6 C0,0 252,-13 350,110 L600,100 L0,100 Z"
-
-           // Adjusted path for top curve
               fill="#FFFFFF"
             />
           </Svg>
@@ -28,9 +26,9 @@ const RegisterCurve = () => {
       },
     
       registerCurve: {
-        width: '80%', // Full width of the parent container
-        height: 60, // Height of the view container
-        overflow: 'hidden', // Hide overflow
+        width: '80%',
+        height: 60,
+        overflow: 'hidden',
         position: 'relative',
       },
     });

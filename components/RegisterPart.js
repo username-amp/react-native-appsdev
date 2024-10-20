@@ -28,21 +28,17 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         borderBottomRightRadius: 40,
         borderBottomLeftRadius: 40,
-    
-        // Shadow for iOS
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-    
-        // Shadow for Android
         elevation: 5,
       },
   
   link: {
-    color: '#1E90FF', // Blue color for the link
-    textDecorationLine: 'underline', // Underline to indicate it's a link
-    marginLeft: 5, // Add some space between the text and the link
+    color: '#1E90FF',
+    textDecorationLine: 'underline',
+    marginLeft: 5,
   },
 });
 

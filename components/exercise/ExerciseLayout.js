@@ -1,23 +1,23 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 
-const BballLayout = () => {
-  const navigation = useNavigation();
+const ExerciseLayout = () => {
+    const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate('InsideBball');
-  };
+    const handlePress = () => { 
+        navigation.navigate('InsideExercise');
+    }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.lagayanngpic}>
-          <Image source={require('../../assets/bball.png')} style={styles.pic} />
+          <Image source={require('../../assets/exercise.png')} style={styles.pic} />
         </View>
         <View style={styles.bballdesc}>
-          <Text style={styles.bballtext}>Basketball</Text>
-          <Text style={styles.description}>Basketball is a team sport where two teams, most commonly of five players each, opposing one another on a rectangular court.</Text>
+          <Text style={styles.bballtext}>Exercise</Text>
+          <Text style={styles.description}>Exercise involves physical activity to improve or maintain physical fitness and overall health.</Text>
         </View>
         <View style={styles.explore}>
           <Pressable style={styles.exploreButton} onPress={handlePress}>
@@ -31,15 +31,15 @@ const BballLayout = () => {
           <Icon name="history" size={24} color="#494848" />
           <Pressable>
             <Text style={styles.iconText}>History</Text>
-            <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
+            <Text style={styles.iconSubText}>Exercise has been a part of human culture for centuries.</Text>
           </Pressable>
         </View>
 
         <View style={styles.iconbox}>
-          <Icon name="users" size={24} color="#494848" />
+          <Icon name="heartbeat" size={24} color="#494848" />
           <Pressable>
-            <Text style={styles.iconText}>Teams</Text>
-            <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
+            <Text style={styles.iconText}>Health Benefits</Text>
+            <Text style={styles.iconSubText}>Exercise improves cardiovascular health, strengthens muscles, and more.</Text>
           </Pressable>
         </View>
       </View>
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BballLayout;
+export default ExerciseLayout;

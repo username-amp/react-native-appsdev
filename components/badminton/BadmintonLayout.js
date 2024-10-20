@@ -1,26 +1,21 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 
-const BballLayout = () => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate('InsideBball');
-  };
-
+const BadmintonLayout = () => {
+    
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.lagayanngpic}>
-          <Image source={require('../../assets/bball.png')} style={styles.pic} />
+          <Image source={require('../../assets/badminton.png')} style={styles.pic} />
         </View>
         <View style={styles.bballdesc}>
-          <Text style={styles.bballtext}>Basketball</Text>
-          <Text style={styles.description}>Basketball is a team sport where two teams, most commonly of five players each, opposing one another on a rectangular court.</Text>
+          <Text style={styles.bballtext}>Badminton</Text>
+          <Text style={styles.description}>Badminton is a racquet sport played using racquets to hit a shuttlecock across a net.</Text>
         </View>
         <View style={styles.explore}>
-          <Pressable style={styles.exploreButton} onPress={handlePress}>
+          <Pressable style={styles.exploreButton}>
             <Text style={styles.exploreText}>Explore Info...</Text>
           </Pressable>
         </View>
@@ -31,7 +26,7 @@ const BballLayout = () => {
           <Icon name="history" size={24} color="#494848" />
           <Pressable>
             <Text style={styles.iconText}>History</Text>
-            <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
+            <Text style={styles.iconSubText}>The game was developed in British India in the mid-19th century.</Text>
           </Pressable>
         </View>
 
@@ -39,7 +34,7 @@ const BballLayout = () => {
           <Icon name="users" size={24} color="#494848" />
           <Pressable>
             <Text style={styles.iconText}>Teams</Text>
-            <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
+            <Text style={styles.iconSubText}>Top players and teams in the world of badminton.</Text>
           </Pressable>
         </View>
       </View>
@@ -129,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BballLayout;
+export default BadmintonLayout;

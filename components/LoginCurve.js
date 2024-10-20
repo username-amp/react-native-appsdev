@@ -5,12 +5,12 @@ const LoginCurve = () => {
   return (
     <View style={styles.bahayngSVG}>
       <Svg
-        height="60" // Shrink height of the SVG
-        width="100%" // Full width
+        height="60"
+        width="100%"
         style={styles.svg}
       >
         <Path
-          d="M0,0 C200,100 250,0 600,0 L600,0 L0,0 Z" // Adjusted path to fit smaller height
+          d="M0,0 C200,100 250,0 600,0 L600,0 L0,0 Z"
           fill="#FFFFFF"
         />
       </Svg>
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
-    width: '100%', // Full width of the parent container
+    width: '100%',
   },
 
   bahayngSVG: {
     position: 'relative',
-    width: '80%', // Full width of the parent container
-    height: 60, // Shrink the height of the view container
-    overflow: 'hidden', // Hide any overflow from the curve
+    width: '80%',
+    height: 60,
+    overflow: 'hidden',
   
   },
 });

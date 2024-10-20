@@ -4,6 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import Dashboard from '../pages/Dashboard'; // Import the Dashboard component
+import InsideBball from '../components/basketball/InsideBball';
+import InsideVball from '../components/volleyball/InsideVball';
+import InsideBilliard from '../components/billiard/InsideBilliard';
+import InsideExercise from '../components/exercise/InsideExercise';
 
 const Stack = createStackNavigator();
 
@@ -11,10 +15,13 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* Add the Dashboard screen */}
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="InsideBball" component={InsideBball} />
+        <Stack.Screen name="InsideVball" component={InsideVball} />
+        <Stack.Screen name="InsideBilliard" component={InsideBilliard} />
+        <Stack.Screen name="InsideExercise" component={InsideExercise} />
       </Stack.Navigator>
     </NavigationContainer>
   );

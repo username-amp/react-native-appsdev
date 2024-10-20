@@ -1,23 +1,23 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons
 import { useNavigation } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
-const BballLayout = () => {
-  const navigation = useNavigation();
+const BilliardLayout = () => {
 
-  const handlePress = () => {
-    navigation.navigate('InsideBball');
-  };
+    const navigation = useNavigation();
 
+    const handlePress = () => { 
+        navigation.navigate('InsideBilliard');
+    }
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.lagayanngpic}>
-          <Image source={require('../../assets/bball.png')} style={styles.pic} />
+          <Image source={require('../../assets/billiard.png')} style={styles.pic} />
         </View>
         <View style={styles.bballdesc}>
-          <Text style={styles.bballtext}>Basketball</Text>
-          <Text style={styles.description}>Basketball is a team sport where two teams, most commonly of five players each, opposing one another on a rectangular court.</Text>
+          <Text style={styles.bballtext}>Billiards</Text>
+          <Text style={styles.description}>Billiards refers to a variety of games that involve hitting balls with a cue stick on a rectangular table.</Text>
         </View>
         <View style={styles.explore}>
           <Pressable style={styles.exploreButton} onPress={handlePress}>
@@ -31,15 +31,15 @@ const BballLayout = () => {
           <Icon name="history" size={24} color="#494848" />
           <Pressable>
             <Text style={styles.iconText}>History</Text>
-            <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
+            <Text style={styles.iconSubText}>The game of billiards dates back to the 15th century in Europe.</Text>
           </Pressable>
         </View>
 
         <View style={styles.iconbox}>
           <Icon name="users" size={24} color="#494848" />
           <Pressable>
-            <Text style={styles.iconText}>Teams</Text>
-            <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
+            <Text style={styles.iconText}>Famous Players</Text>
+            <Text style={styles.iconSubText}>Famous players in the world of billiards.</Text>
           </Pressable>
         </View>
       </View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5,
+    elevation: 5,                      
     padding: 20,
     marginBottom: 20,
   },
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BballLayout;
+export default BilliardLayout;

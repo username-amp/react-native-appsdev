@@ -1,23 +1,25 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from "@react-navigation/native";
 
-const BballLayout = () => {
-  const navigation = useNavigation();
+const VballLayout = () => {
+    const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate('InsideBball');
-  };
+    const handlePress = () => { 
+        navigation.navigate('InsideVball');
+    }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.lagayanngpic}>
-          <Image source={require('../../assets/bball.png')} style={styles.pic} />
+          <Image source={require('../../assets/vball.jpg')} style={styles.pic} />
         </View>
         <View style={styles.bballdesc}>
-          <Text style={styles.bballtext}>Basketball</Text>
-          <Text style={styles.description}>Basketball is a team sport where two teams, most commonly of five players each, opposing one another on a rectangular court.</Text>
+          <Text style={styles.bballtext}>Volleyball</Text>
+          <Text style={styles.description}>
+            Volleyball is a team sport in which two teams of six players are separated by a net. Each team tries to score by grounding a ball on the other team's court.
+          </Text>
         </View>
         <View style={styles.explore}>
           <Pressable style={styles.exploreButton} onPress={handlePress}>
@@ -31,15 +33,15 @@ const BballLayout = () => {
           <Icon name="history" size={24} color="#494848" />
           <Pressable>
             <Text style={styles.iconText}>History</Text>
-            <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
+            <Text style={styles.iconSubText}>Volleyball's rich history dates back to 1895, when it was invented by William G. Morgan.</Text>
           </Pressable>
         </View>
 
         <View style={styles.iconbox}>
-          <Icon name="users" size={24} color="#494848" />
+          <Icon name="trophy" size={24} color="#494848" />
           <Pressable>
-            <Text style={styles.iconText}>Teams</Text>
-            <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
+            <Text style={styles.iconText}>Achievements</Text>
+            <Text style={styles.iconSubText}>Discover the greatest teams and players in volleyball history.</Text>
           </Pressable>
         </View>
       </View>
@@ -129,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BballLayout;
+export default VballLayout;

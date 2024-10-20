@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
       }),
 
       link: {
-        color: '#1E90FF', // Blue color for the link
-        textDecorationLine: 'underline', // Underline to indicate it's a link
-        marginLeft: 5, // Add some space between the text and the link
+        color: '#1E90FF',
+        textDecorationLine: 'underline',
+        marginLeft: 5,
       },
 })
 

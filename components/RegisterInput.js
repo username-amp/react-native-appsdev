@@ -55,7 +55,7 @@ const RegisterInput = () => {
         <TextInput
           placeholder="Confirm Password"
           value={confirmPassword}
-          onChangeText={setConfirmPassword} // Fixed to set confirm password
+          onChangeText={setConfirmPassword}
           style={styles.textInput}
           secureTextEntry
         />
