@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#D9D9D9',
     marginBottom: 20,
-    paddingVertical: 10,
+   // paddingVertical: 10,
   },
 
 });

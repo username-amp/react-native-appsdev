@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, StyleSheet, Animated, FlatList } from 'react-native';
 import BballLayout from '../basketball/BballLayout';
 import VballLayout from '../volleyball/VballLayout';
-import BadmintonLayout from '../badminton/BadmintonLayout'; // Import the new layout
+import BadmintonLayout from '../badminton/BadmintonLayout';
 import BilliardLayout from '../billiard/BilliardLayout';
 import ExerciseLayout from '../exercise/ExerciseLayout';
 
@@ -45,8 +45,8 @@ const DashboardContent = () => {
 
 const styles = StyleSheet.create({
   container: {
-   
     backgroundColor: '#f5f5f5',
+  
   },
   itemContainer: {
     width: 360,

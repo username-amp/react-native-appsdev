@@ -28,7 +28,7 @@ const BballLayout = () => {
 
       <View style={styles.iconContainer}>
         <View style={styles.iconbox}>
-          <Icon name="history" size={24} color="#494848" />
+          <Icon name="history" size={24} color="#690981" />
           <Pressable>
             <Text style={styles.iconText}>History</Text>
             <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
@@ -36,7 +36,7 @@ const BballLayout = () => {
         </View>
 
         <View style={styles.iconbox}>
-          <Icon name="users" size={24} color="#494848" />
+          <Icon name="users" size={24} color="#690981" />
           <Pressable>
             <Text style={styles.iconText}>Teams</Text>
             <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
@@ -49,19 +49,18 @@ const BballLayout = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F6F1F7', // Light background from gradient
     height: '100%',
     width: '100%',
     padding: 20,
+    position: 'absolute',
   },
   card: {
-    backgroundColor: '#fff',
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5,
     padding: 20,
     marginBottom: 20,
   },
@@ -84,25 +83,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 28,
     marginBottom: 10,
-    color: '#494848',
+    color: '#690981',
   },
   description: {
     textAlign: 'center',
     fontSize: 16,
-    color: '#636363',
+    color: '#494848',
   },
   explore: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   exploreButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#C7A9CF',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   exploreText: {
-    color: '#494848',
+    color: '#FFFFFF',
     fontSize: 16,
   },
   iconContainer: {
@@ -111,21 +110,24 @@ const styles = StyleSheet.create({
   },
   iconbox: {
     flexDirection: 'row',
-    backgroundColor: '#ffffff',
     borderRadius: 5,
     padding: 15,
     marginBottom: 10,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   iconText: {
     fontWeight: 'bold',
-    color: '#494848',
+    color: '#690981',
     marginLeft: 10,
   },
   iconSubText: {
     color: '#636363',
     marginLeft: 10,
-    fontSize: 12,
+    fontSize: 10,
   },
 });
 
