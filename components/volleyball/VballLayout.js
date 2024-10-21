@@ -13,7 +13,7 @@ const VballLayout = () => {
         <View style={styles.container}>
             <View style={styles.card}>
                 <View style={styles.lagayanngpic}>
-                    <Image source={require('../../assets/vball.jpg')} style={styles.pic} />
+                    <Image source={require('../../assets/vball.png')} style={styles.pic} />
                 </View>
                 <View style={styles.bballdesc}>
                     <Text style={styles.bballtext}>Volleyball</Text>
