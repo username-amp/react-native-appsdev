@@ -56,9 +56,11 @@ const LoginInput = () => {
         />
       </View>
 
+      <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -109,10 +111,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#D9D9D9',
     marginBottom: 20,
     paddingVertical: 10,
+    
   },
 
   icon: {
@@ -120,7 +124,13 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    flex: 1,
+    width: '80%',
+  },
+
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    
   },
 
   loginButton: {
@@ -128,6 +138,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 30,
     marginTop: 20,
+    width: '100%',
   },
 
   buttonText: {

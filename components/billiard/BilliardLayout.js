@@ -13,7 +13,7 @@ const BilliardLayout = () => {
         <View style={styles.container}>
             <View style={styles.card}>
                 <View style={styles.lagayanngpic}>
-                    <Image source={require('../../assets/billiard.png')} style={styles.pic} />
+                    <Image source={require('../../assets/creepyBilyar.gif')} style={styles.pic} />
                 </View>
                 <View style={styles.bballdesc}>
                     <Text style={styles.bballtext}>Billiards</Text>
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     pic: {
-        height: 150,
-        width: 150,
+        height: 180,
+        width: 210,
         borderRadius: 75,
     },
     lagayanngpic: {

@@ -13,7 +13,7 @@ const BballLayout = () => {
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.lagayanngpic}>
-          <Image source={require('../../assets/bball.png')} style={styles.pic} />
+          <Image source={require('../../assets/baksetbold.gif')} style={styles.pic} />
         </View>
         <View style={styles.bballdesc}>
           <Text style={styles.bballtext}>Basketball</Text>
@@ -66,13 +66,14 @@ const styles = StyleSheet.create({
   },
   pic: {
     height: 150,
-    width: 150,
-    borderRadius: 75,
+    width: 200,
+   
   },
   lagayanngpic: {
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
+    width: '100%',
   },
   bballdesc: {
     justifyContent: 'center',

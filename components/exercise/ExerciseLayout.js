@@ -13,7 +13,7 @@ const ExerciseLayout = () => {
         <View style={styles.container}>
             <View style={styles.card}>
                 <View style={styles.lagayanngpic}>
-                    <Image source={require('../../assets/exercise.png')} style={styles.pic} />
+                    <Image source={require('../../assets/gym.gif')} style={styles.pic} />
                 </View>
                 <View style={styles.bballdesc}>
                     <Text style={styles.bballtext}>Exercise</Text>
