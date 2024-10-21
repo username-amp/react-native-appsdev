@@ -76,7 +76,7 @@ const InsideBball = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#F6F1F7', // Updated background color
     },
     scrollContainer: {
         padding: 15,
@@ -88,25 +88,26 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: '#333',
+        color: '#690981', // Updated title color
     },
     subTitle: {
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: '#555',
+        color: '#690981', // Updated subtitle color
     },
     sectionHeader: {
         fontSize: 18,
         fontWeight: '600',
         marginBottom: 5,
-        color: '#777',
+        color: '#690981', // Updated section header color
+        marginTop: 10,
     },
     paragraph: {
         fontSize: 16,
         lineHeight: 22,
         marginBottom: 8,
-        color: '#333',
+        color: '#494848', // Updated paragraph color
     },
 });
 

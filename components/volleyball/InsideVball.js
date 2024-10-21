@@ -120,12 +120,12 @@ const InsideVball = () => {
 const styles = StyleSheet.create({
 lagayan: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F6F1F7',
     },
 
   container: {
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F6F1F7',
   },
   section: {
     marginBottom: 20,
@@ -134,13 +134,13 @@ lagayan: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#333',
+    color: '#690981',
   },
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#555',
+    color: '#690981',
   },
   text: {
     fontSize: 16,

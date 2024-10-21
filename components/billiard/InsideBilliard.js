@@ -113,7 +113,7 @@ const InsideBilliard = () => {
 const styles = StyleSheet.create({
     lagayan: {
       flex: 1,
-      backgroundColor: '#f5f5f5',
+      backgroundColor: '#F6F1F7',
     },
     container: {
       flex: 1,
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 10,
-      color: '#333',
+      color: '#690981',
     },
     subHeader: {
       fontSize: 20,
       fontWeight: 'bold',
       marginTop: 15,
-      color: '#555',
+      color: '#690981',
     },
     body: {
       fontSize: 16,

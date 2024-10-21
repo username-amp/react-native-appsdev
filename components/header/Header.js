@@ -13,7 +13,7 @@ const Header = () => {
   const handleMenuPress = () => {
     setMenuVisible(true);
   };
-
+  
   const handleCloseMenu = () => {
     setMenuVisible(false);
   };

@@ -170,21 +170,23 @@ const InsideExercise = () => {
 const styles = StyleSheet.create({
     lagayan: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#F6F1F7',
         },
   container: {
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#F6F1F7',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginVertical: 10,
+    color: '#690981',
   },
   subTitle: {
     fontSize: 20,
     fontWeight: '600',
     marginVertical: 5,
+    color: '#690981',
   },
   paragraph: {
     fontSize: 16,
