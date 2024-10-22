@@ -9,6 +9,7 @@ import InsideVball from '../components/volleyball/InsideVball';
 import InsideBilliard from '../components/billiard/InsideBilliard';
 import InsideExercise from '../components/exercise/InsideExercise';
 import InsideBadminton from '../components/badminton/InsideBadminton';
+import Onboarding from '../pages/Onboarding';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Register" component={RegisterPage} />
         <Stack.Screen name="Dashboard" component={Dashboard} />

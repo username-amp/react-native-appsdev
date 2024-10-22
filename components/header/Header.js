@@ -55,7 +55,6 @@ const Header = () => {
         <Icon name="user" size={24} color="#fff" />
       </Pressable>
 
-      {/* User Modal */}
       <Modal
         animationType="none"
         transparent={true}
