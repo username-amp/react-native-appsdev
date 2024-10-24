@@ -1,35 +1,45 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { View, StyleSheet, Animated, FlatList, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Animated, FlatList, Text, Image, TouchableOpacity, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import WaveSvg from './WaveSvg';
+import { useFonts } from 'expo-font';
+
 
 const items = [
   {
     id: '1',
-    title: 'Welcome to Our App',
-    description: 'Discover a world of sports and fitness opportunities. Join our community and unlock a world of possibilities.',
-    image: require('../assets/bball.png'),
+    title: 'Elevate Your Fitness Journey',
+    image: require('../assets/onboardingbball.png'),
   },
   {
     id: '2',
-    title: 'Explore the World of Sports',
-    description: 'Discover a world of sports and fitness opportunities. Join our community and unlock a world of possibilities.',
-    image: require('../assets/vball.png'),
+    title: 'Unlock a World of Sports & Training',
+    image: require('../assets/onboardingvball.png'),
   },
   {
     id: '3',
-    title: 'Join Our Community',
-    description: 'Discover a world of sports and fitness opportunities. Join our community and unlock a world of possibilities.',
+    title: 'oin Our Active Sports Community',
     image: require('../assets/badminton.png'),
   },
   {
     id: '4',
-    title: 'Discover New Adventures',
-    description: 'Discover a world of sports and fitness opportunities. Join our community and unlock a world of possibilities.',
-    image: require('../assets/billiard.png'),
+    title: 'Discover Exciting Sports Adventures',
+
+    image: require('../assets/onboardingbilliard.png'),
   },
 ];
 
 const Onboarding = () => {
+  const [loaded] = useFonts({
+    'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Regular': require('../assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-Italic': require('../assets/fonts/Roboto-Italic.ttf'),
+    'Roboto-Light': require('../assets/fonts/Roboto-Light.ttf'),
+    'OpenSans-Regular': require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
+    'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
+
+  })
+
   const navigation = useNavigation();
   
   useLayoutEffect(() => {
@@ -97,12 +107,13 @@ const Onboarding = () => {
           );
         })}
       </View>
+      <WaveSvg />
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.registerButton} onPress={navigateToRegister}>
-          <Text style={styles.buttonTextRegister}>Register</Text>
+          <Text style={styles.buttonTextRegister}>Get Started</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginButton} onPress={navigateToLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Log in</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -112,24 +123,28 @@ const Onboarding = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F6F1F7',
+    backgroundColor: '#ffffff',
     justifyContent: 'center',
   },
   itemContainer: {
     width: 360,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 40,
+    marginTop: '30%',
   },
   image: {
-    width: '100%',
-    height: 200,
+    width: '80%',
+    height: 210,
     borderRadius: 10,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+   fontFamily: 'OpenSans-Italic',
     marginTop: 20,
+    textAlign: 'center',
+
+   
   },
   description: {
     fontSize: 16,
@@ -139,41 +154,39 @@ const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 140,
+    bottom: 190,
     alignSelf: 'center',
   },
   dot: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#690981',
+    backgroundColor: '#956AA1',
     marginHorizontal: 5,
   },
   buttonContainer: {
     position: 'absolute',
     bottom: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+
     width: '80%',
     alignSelf: 'center',
   },
   registerButton: {
     flex: 1,
-    backgroundColor: '#690981',
+    backgroundColor: '#956AA1',
     paddingVertical: 15,
-    borderRadius: 5,
-    marginRight: 10,
+    marginBottom: 10,
+    borderRadius: 30,
   },
   loginButton: {
     flex: 1,
-    backgroundColor: '#e6d9ea',
+    backgroundColor: '#f2f3f7',
     paddingVertical: 15,
-    borderRadius: 5,
-    marginLeft: 10,
+    borderRadius: 30,
 
   },
   buttonText: {
-    color: '#690981',
+    color: '#956AA1',
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 const LoginInput = () => {
+  const [loaded] = useFonts({
+    'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Regular': require('../assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-Italic': require('../assets/fonts/Roboto-Italic.ttf'),
+    'OpenSans-Regular': require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
+    'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
+  });
+  
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
@@ -24,6 +34,10 @@ const LoginInput = () => {
 
     navigation.navigate('Dashboard');
   };
+
+  if (!loaded) {
+    return null; // Show nothing until fonts are loaded
+  }
 
   return (
     <View style={styles.container}>
@@ -57,9 +71,9 @@ const LoginInput = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>LOGIN</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -116,7 +130,6 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D9D9D9',
     marginBottom: 20,
     paddingVertical: 10,
-    
   },
 
   icon: {
@@ -130,7 +143,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    
   },
 
   loginButton: {
@@ -145,6 +157,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'Roboto-Italic', // This should work after fonts are loaded
   },
 });
 
