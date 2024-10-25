@@ -1,9 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { View, StyleSheet, Animated, FlatList, Text, Image, TouchableOpacity, Platform } from 'react-native';
+import { View, StyleSheet, Animated, FlatList, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import WaveSvg from './WaveSvg';
-import { useFonts } from 'expo-font';
-
 
 const items = [
   {
@@ -18,28 +15,18 @@ const items = [
   },
   {
     id: '3',
-    title: 'oin Our Active Sports Community',
+    title: 'Join Our Active Sports Community',
     image: require('../assets/badminton.png'),
   },
   {
     id: '4',
     title: 'Discover Exciting Sports Adventures',
-
     image: require('../assets/onboardingbilliard.png'),
   },
 ];
 
 const Onboarding = () => {
-  const [loaded] = useFonts({
-    'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
-    'Roboto-Regular': require('../assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-Italic': require('../assets/fonts/Roboto-Italic.ttf'),
-    'Roboto-Light': require('../assets/fonts/Roboto-Light.ttf'),
-    'OpenSans-Regular': require('../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
-    'OpenSans-Italic': require('../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
-
-  })
-
+ 
   const navigation = useNavigation();
   
   useLayoutEffect(() => {
@@ -49,9 +36,8 @@ const Onboarding = () => {
   }, [navigation]);
 
   const scrollX = useRef(new Animated.Value(0)).current;
-  const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef(null);
-
+  
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Image source={item.image} style={styles.image} />
@@ -64,10 +50,6 @@ const Onboarding = () => {
     [{ nativeEvent: { contentOffset: { x: scrollX } } }],
     {
       useNativeDriver: false,
-      listener: (event) => {
-        const index = Math.floor(event.nativeEvent.contentOffset.x / 360);
-        setCurrentIndex(index);
-      },
     }
   );
 
@@ -76,7 +58,7 @@ const Onboarding = () => {
   };
 
   const navigateToRegister = () => {
-    navigation.navigate('Register'); 
+    navigation.navigate('Register');
   };
 
   return (
@@ -94,20 +76,27 @@ const Onboarding = () => {
       />
       <View style={styles.pagination}>
         {items.map((_, index) => {
-          const opacity = scrollX.interpolate({
+          const scale = scrollX.interpolate({
             inputRange: [(index - 1) * 360, index * 360, (index + 1) * 360],
-            outputRange: [0.3, 1, 0.3],
+            outputRange: [0.8, 1.2, 0.8],
             extrapolate: 'clamp',
           });
+
+          const backgroundColor = scrollX.interpolate({
+            inputRange: [(index - 1) * 360, index * 360, (index + 1) * 360],
+            outputRange: ['#e0e0e0', '#956AA1', '#e0e0e0'],
+            extrapolate: 'clamp',
+          });
+
           return (
             <Animated.View
               key={index}
-              style={[styles.dot, { opacity }]}
+              style={[styles.dot, { transform: [{ scale }], backgroundColor }]}
             />
           );
         })}
       </View>
-      <WaveSvg />
+  
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.registerButton} onPress={navigateToRegister}>
           <Text style={styles.buttonTextRegister}>Get Started</Text>
@@ -131,7 +120,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 40,
-    marginTop: '30%',
   },
   image: {
     width: '80%',
@@ -140,11 +128,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-   fontFamily: 'OpenSans-Italic',
+    fontFamily: 'OpenSans-Regular',
     marginTop: 20,
     textAlign: 'center',
-
-   
   },
   description: {
     fontSize: 16,
@@ -161,13 +147,11 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#956AA1',
     marginHorizontal: 5,
   },
   buttonContainer: {
     position: 'absolute',
     bottom: 50,
-
     width: '80%',
     alignSelf: 'center',
   },
@@ -183,7 +167,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f3f7',
     paddingVertical: 15,
     borderRadius: 30,
-
   },
   buttonText: {
     color: '#956AA1',
@@ -191,14 +174,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-
   buttonTextRegister: {
     color: '#fff',
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
   },
-
 });
 
 export default Onboarding;

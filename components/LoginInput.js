@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Roboto-Italic', // This should work after fonts are loaded
+    fontFamily: 'Roboto-Regular', // This should work after fonts are loaded
   },
 });
 
