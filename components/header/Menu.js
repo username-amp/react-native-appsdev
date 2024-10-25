@@ -4,18 +4,26 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window');
 
+const displayNames = {
+  InsideBball: 'Basketball',
+  InsideVball: 'Volleyball',
+  InsideBadminton: 'Badminton',
+  InsideBilliard: 'Billiards',
+  InsideExercise: 'Exercise',
+};
+
 const DATA = [
   {
     title: 'Main',
-    data: ['Home', 'About Us'],
+    data: ['About Us'],
   },
   {
     title: 'Sports',
-    data: ['Basketball', 'Volleyball', 'Badminton', 'Billiard', 'Exercise'],
+    data: Object.keys(displayNames),
   },
 ];
 
-const Menu = ({ visible, onClose }) => {
+const Menu = ({ visible, onClose, navigation }) => {
   const translateX = useRef(new Animated.Value(-width)).current;
   const [isVisible, setIsVisible] = useState(visible);
 
@@ -37,13 +45,26 @@ const Menu = ({ visible, onClose }) => {
     }
   }, [visible]);
 
+  const handleItemPress = (item) => {
+    onClose();
+    if (navigation) {
+      navigation.navigate(item);
+    } else {
+      console.error("Navigation prop is undefined");
+    }
+  };
+  
+
   if (!isVisible) return null;
 
   return (
     <Modal transparent={true} visible={isVisible} animationType="none">
       <View style={styles.overlay}>
+        
         <Pressable style={styles.closeOverlay} onPress={onClose} />
+        
         <Animated.View style={[styles.menuContainer, { transform: [{ translateX }] }]}>
+          
           <Pressable onPress={onClose} style={styles.closeButton}>
             <Icon name="close" size={24} color="#000" />
           </Pressable>
@@ -51,7 +72,9 @@ const Menu = ({ visible, onClose }) => {
             sections={DATA}
             keyExtractor={(item, index) => item + index}
             renderItem={({ item }) => (
-              <Text style={styles.item}>{item}</Text>
+              <Pressable onPress={() => handleItemPress(item)}>
+                <Text style={styles.item}>{displayNames[item] || item}</Text>
+              </Pressable>
             )}
             renderSectionHeader={({ section: { title } }) => (
               <Text style={styles.sectionHeader}>{title}</Text>

@@ -78,16 +78,24 @@ const AnimatedPopup = () => {
       return () => clearTimeout(timer);
     }
   }, [displayedText, startTyping]);
-
   const closePopup = useCallback(() => {
-    Animated.timing(scale, {
-      toValue: 0,
+    // First, animate the wavePosition to move off-screen
+    Animated.timing(wavePosition, {
+      toValue: 500, // Move off-screen to the right
       duration: 500,
       useNativeDriver: true,
     }).start(() => {
-      setVisible(false);
+      // Once the wave has moved, animate the popup scale down and set visibility to false
+      Animated.timing(scale, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }).start(() => {
+        setVisible(false);
+      });
     });
-  }, [scale]);
+  }, [scale, wavePosition]);
+  
 
   if (!loaded || !visible) return null;
 
@@ -140,7 +148,7 @@ const AnimatedPopup = () => {
         <WaveSvg />
        
       </Animated.View>
-    
+  
     </View>
   );
 };

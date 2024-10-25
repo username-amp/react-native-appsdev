@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useLayoutEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/header/Header';
@@ -17,8 +17,8 @@ const Dashboard = () => {
 
   return (
     <View>
-    
-      <Header />
+      {/* Pass only the navigation prop to Header */}
+      <Header navigation={navigation} />
       <DashboardWave />
       <DashboardContent />
       <UserSwipeIndication />

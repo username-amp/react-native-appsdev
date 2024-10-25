@@ -10,11 +10,16 @@ const RegisterInput = () => {
   const navigation = useNavigation();
 
   const handleRegister = async () => {
+    if (!username || !password || !confirmPassword) {
+      alert('All fields are required');
+      return;
+    }
+    
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-
+  
     try {
       await AsyncStorage.setItem('username', username);
       await AsyncStorage.setItem('password', password);
@@ -24,6 +29,7 @@ const RegisterInput = () => {
       alert('Error registering user');
     }
   };
+  
 
   return (
     <View style={styles.container}>

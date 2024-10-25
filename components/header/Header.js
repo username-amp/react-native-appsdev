@@ -3,22 +3,52 @@ import { View, Pressable, StyleSheet, Text, Modal, Animated } from 'react-native
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Menu from './Menu';
+import { Audio } from 'expo-av';
 
-const Header = () => {
+const Header = ({ navigation }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [userModalVisible, setUserModalVisible] = useState(false);
   const [username, setUsername] = useState('');
-  const [slideAnim] = useState(new Animated.Value(500));
+  const [slideAnim] = useState(new Animated.Value(-500)); // Start off-screen at the top
+  const [menuSound, setMenuSound] = useState();
+  const [userSound, setUserSound] = useState(); // New state for user sound
 
-  const handleMenuPress = () => {
+  useEffect(() => {
+    const loadSounds = async () => {
+      const { sound: menuSound } = await Audio.Sound.createAsync(
+        require('../../assets/sound/menuPopup.mp3')
+      );
+      setMenuSound(menuSound);
+
+      const { sound: userSound } = await Audio.Sound.createAsync( // Load user sound
+        require('../../assets/sound/menuPopup.mp3') // Replace with the actual path to your sound file
+      );
+      setUserSound(userSound);
+    };
+
+    loadSounds();
+
+    return () => {
+      menuSound && menuSound.unloadAsync();
+      userSound && userSound.unloadAsync(); // Unload user sound
+    };
+  }, []);
+
+  const handleMenuPress = async () => {
+    if (menuSound) {
+      await menuSound.replayAsync();
+    }
     setMenuVisible(true);
   };
-  
+
   const handleCloseMenu = () => {
     setMenuVisible(false);
   };
 
   const handleUserPress = async () => {
+    if (userSound) {
+      await userSound.replayAsync(); // Play user sound
+    }
     const storedUsername = await AsyncStorage.getItem('username');
     if (storedUsername) {
       setUsername(storedUsername);
@@ -29,18 +59,23 @@ const Header = () => {
 
   const slideInModal = () => {
     Animated.spring(slideAnim, {
-      toValue: 0,
+      toValue: 0, // Move to the center
       useNativeDriver: true,
     }).start();
   };
 
   const handleCloseUserModal = () => {
     Animated.spring(slideAnim, {
-      toValue: 500,
+      toValue: -500, // Slide back up off-screen
       useNativeDriver: true,
     }).start(() => {
       setUserModalVisible(false);
     });
+  };
+
+  const handleLogout = async () => {
+    navigation.navigate('Login');
+    handleCloseUserModal(); // Close the modal after logout
   };
 
   return (
@@ -61,17 +96,17 @@ const Header = () => {
         visible={userModalVisible}
         onRequestClose={handleCloseUserModal}
       >
-        <View style={styles.modalOverlay}>
-          <Animated.View style={[styles.modalContent, { transform: [{ translateX: slideAnim }] }]}>
+        <Pressable style={styles.modalOverlay} onPress={handleCloseUserModal}>
+          <Animated.View style={[styles.modalContent, { transform: [{ translateY: slideAnim }] }]}>
             <Text style={styles.modalText}>Logged in as: {username}</Text>
-            <Pressable onPress={handleCloseUserModal} style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>Close</Text>
+            <Pressable onPress={handleLogout} style={styles.logoutButton}>
+              <Text style={styles.logoutButtonText}>Logout</Text>
             </Pressable>
           </Animated.View>
-        </View>
+        </Pressable>
       </Modal>
 
-      <Menu visible={menuVisible} onClose={handleCloseMenu} />
+      <Menu visible={menuVisible} onClose={handleCloseMenu} navigation={navigation} />
     </View>
   );
 };
@@ -99,9 +134,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   modalOverlay: {
-    flex: 1,
-    alignItems: 'flex-end',
+    position: 'absolute',
+    top: 0,
+    right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    height: '100%',
+    width: '100%',
   },
   modalContent: {
     backgroundColor: '#fff',
@@ -113,19 +151,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 5,
-    width: '70%',
+    width: '50%',
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
   modalText: {
     fontSize: 18,
     marginBottom: 20,
   },
-  closeButton: {
+  logoutButton: {
     backgroundColor: '#690981',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
-  closeButtonText: {
+  logoutButtonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
