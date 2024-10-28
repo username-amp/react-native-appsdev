@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     color: '#1E90FF',
     textDecorationLine: 'underline',
     marginLeft: 5,
+    fontFamily: 'OpenSans-Regular',
   },
 });
 

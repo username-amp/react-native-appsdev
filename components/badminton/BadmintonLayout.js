@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Linking } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,6 +7,14 @@ const BadmintonLayout = () => {
 
     const handlePress = () => {
         navigation.navigate('InsideBadminton');
+    };
+
+    const openHistoryLink = () => {
+        Linking.openURL('https://historytimelines.co/timeline/badminton');
+    };
+
+    const openTeamsLink = () => {
+        Linking.openURL('https://www.badmintonspeak.com/bwf-world-tour/top-badminton-countries-in-2023-country-world-ranking-badminton/'); // Replace with the specific teams URL
     };
 
     return (
@@ -31,7 +39,7 @@ const BadmintonLayout = () => {
             <View style={styles.iconContainer}>
                 <View style={styles.iconbox}>
                     <Icon name="history" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openHistoryLink}>
                         <Text style={styles.iconText}>History</Text>
                         <Text style={styles.iconSubText}>The game was developed in British India in the mid-19th century.</Text>
                     </Pressable>
@@ -39,7 +47,7 @@ const BadmintonLayout = () => {
 
                 <View style={styles.iconbox}>
                     <Icon name="users" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openTeamsLink}>
                         <Text style={styles.iconText}>Teams</Text>
                         <Text style={styles.iconSubText}>Top players and teams in the world of badminton.</Text>
                     </Pressable>

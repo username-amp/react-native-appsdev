@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const RegisterInput = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigation = useNavigation();
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '1086216819726-mf0a72sj38hngpnt6bvvq6s5sanatque.apps.googleusercontent.com',
+    });
+  }, []);
 
   const handleRegister = async () => {
     if (!username || !password || !confirmPassword) {
@@ -29,6 +38,36 @@ const RegisterInput = () => {
       alert('Error registering user');
     }
   };
+
+  async function onGoogleButtonPress() {
+    try {
+      await GoogleSignin.hasPlayServices();
+      
+      // Sign in the user with Google and get user info
+      const userInfo = await GoogleSignin.signIn();
+      
+      // Get the ID token from the user info
+      const { idToken } = userInfo;
+  
+      // Create a Google credential with the ID token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+      // Sign-in the user with the credential
+      await auth().signInWithCredential(googleCredential);
+      
+      console.log('Signed in with Google!', userInfo);
+      // Navigate or perform actions after successful sign in
+      navigation.navigate('Dashboard'); // Replace 'Home' with your desired route
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log('User cancelled the login flow');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log('Sign in is in progress already');
+      } else {
+        console.error(error);
+      }
+    }
+  }
   
 
   return (
@@ -65,12 +104,16 @@ const RegisterInput = () => {
           secureTextEntry
         />
       </View>
-     
-     <View style={styles.buttonContainer}>
-     <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-        <Text style={styles.buttonText}>REGISTER</Text>
-      </TouchableOpacity>
-     </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
+          <Text style={styles.buttonText}>REGISTER</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.googleButton} onPress={onGoogleButtonPress}>
+          <Icon name="google" size={20} color="#fff" style={styles.googleIcon} />
+          <Text style={styles.googleButtonText}>Sign in with Google</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -94,30 +137,25 @@ const styles = StyleSheet.create({
       },
     }),
   },
-
   loginText: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#690981',
   },
-
   lagayanngpic: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
-
   logo: {
     height: 80,
     width: 80,
   },
-
   lagayannglogintext: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -126,37 +164,43 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D9D9D9',
     marginBottom: 20,
     paddingVertical: 10,
-    
   },
-
-  icon: {
-    marginRight: 10,
-  },
-
   textInput: {
     width: '80%',
   },
-
   buttonContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    
   },
-
   loginButton: {
     backgroundColor: '#956AA1',
     padding: 10,
     borderRadius: 30,
     marginTop: 20,
     width: '100%',
+    alignItems: 'center',
   },
-
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    textAlign: 'center',
   },
-
+  googleButton: {
+    flexDirection: 'row',
+    backgroundColor: '#DB4437',
+    padding: 10,
+    borderRadius: 30,
+    marginTop: 10,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  googleIcon: {
+    marginRight: 10,
+  },
+  googleButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 });
 
 export default RegisterInput;

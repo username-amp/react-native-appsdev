@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Animated, StyleSheet, View, TouchableOpacity, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import Svg, { Polygon, ClipPath, Defs, Rect } from 'react-native-svg';
-import WaveSvg from '../../pages/WaveSvg';
+import WaveSvg from '../dashboard/WaveSvg';
 import { useFonts } from 'expo-font';
 
 const AnimatedPopup = () => {
@@ -15,38 +15,37 @@ const AnimatedPopup = () => {
   });
 
   const animatedText = useRef(new Animated.Value(0)).current;
-  const wavePosition = useRef(new Animated.Value(500)).current; // Start from the right off-screen
+  const wavePosition = useRef(new Animated.Value(500)).current;
   const [visible, setVisible] = useState(true);
   const scale = useRef(new Animated.Value(0)).current;
 
-  // Typewriter effect state
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Swipe to explore different sports! Discover your favorites and see whats happening in each one';
   const [startTyping, setStartTyping] = useState(false);
-  const [showSvg, setShowSvg] = useState(false); // State to control SVG visibility
-  const [showRect, setShowRect] = useState(false); // State to control Rect visibility
+  const [showSvg, setShowSvg] = useState(false);
+  const [showRect, setShowRect] = useState(false);
 
   const animatePopup = useCallback(() => {
     Animated.sequence([
-      Animated.delay(1000), // Delay before popup animation starts
+      Animated.delay(1000),
       Animated.timing(scale, {
         toValue: 1,
         duration: 500,
         useNativeDriver: true,
       }),
       Animated.timing(wavePosition, {
-        toValue: 0, // Move to the center
+        toValue: 0,
         duration: 500,
         useNativeDriver: true,
       }),
     ]).start(() => {
-      setStartTyping(true); // Start typing after the popup animation
+      setStartTyping(true);
       setTimeout(() => {
-        setShowSvg(true); // Show SVG after an additional delay
+        setShowSvg(true);
         setTimeout(() => {
-          setShowRect(true); // Show Rect after another delay
-        }, 100); // Delay before showing Rect
-      }, 100); // Delay before showing SVG
+          setShowRect(true);
+        }, 100);
+      }, 100);
     });
   }, [scale, wavePosition]);
 
@@ -64,7 +63,7 @@ const AnimatedPopup = () => {
     }).start();
 
     return () => {
-      animatedText.setValue(0); // Clean up animation value
+      animatedText.setValue(0);
     };
   }, [animatedText]);
 
@@ -73,19 +72,17 @@ const AnimatedPopup = () => {
     if (startTyping && displayedText.length < fullText.length) {
       const timer = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[displayedText.length]);
-      }, 20); // Adjust speed here
+      }, 20);
 
       return () => clearTimeout(timer);
     }
   }, [displayedText, startTyping]);
   const closePopup = useCallback(() => {
-    // First, animate the wavePosition to move off-screen
     Animated.timing(wavePosition, {
-      toValue: 500, // Move off-screen to the right
+      toValue: 500,
       duration: 500,
       useNativeDriver: true,
     }).start(() => {
-      // Once the wave has moved, animate the popup scale down and set visibility to false
       Animated.timing(scale, {
         toValue: 0,
         duration: 500,
@@ -128,17 +125,17 @@ const AnimatedPopup = () => {
                 <Polygon points="0,0 250,0 250,75 188,75 188,100 125,75 0,75" />
               </ClipPath>
             </Defs>
-            {showRect && ( // Render Rect only when showRect is true
+            {showRect && (
               <Rect width="250" height="100" fill="white" clipPath="url(#clip)" />
             )}
-            {showSvg && ( // Render SVG text only when showSvg is true
+            {showSvg && (
               <Animated.Text
                 style={[
                   styles.svgText,
                   { transform: [{ scaleX: animatedText }] },
                 ]}
               >
-                {displayedText} {/* Render the animated text here */}
+                {displayedText}
               </Animated.Text>
             )}
           </Svg>

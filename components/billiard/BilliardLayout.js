@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Linking } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,6 +7,14 @@ const BilliardLayout = () => {
 
     const handlePress = () => { 
         navigation.navigate('InsideBilliard');
+    };
+
+    const openHistoryLink = () => {
+        Linking.openURL('https://www.pooltables.com/pages/history-of-pool?srsltid=AfmBOorbPFKrU6_ot6tby_yLs1K1Khk8uUUu4oOyCNVeKOQb8LJyeB2n'); // Replace with the actual history URL
+    };
+
+    const openPlayersLink = () => {
+        Linking.openURL('https://pearsoncues.com/blog/post/greatest-pool-player-of-all-time/?srsltid=AfmBOophmFld7QFnc3pZdj2X_IljZdDjx8p6sexzMR--JbKAioVYrYGi'); // Replace with the actual famous players URL
     };
 
     return (
@@ -31,7 +39,7 @@ const BilliardLayout = () => {
             <View style={styles.iconContainer}>
                 <View style={styles.iconbox}>
                     <Icon name="history" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openHistoryLink}>
                         <Text style={styles.iconText}>History</Text>
                         <Text style={styles.iconSubText}>The game of billiards dates back to the 15th century in Europe.</Text>
                     </Pressable>
@@ -39,7 +47,7 @@ const BilliardLayout = () => {
 
                 <View style={styles.iconbox}>
                     <Icon name="users" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openPlayersLink}>
                         <Text style={styles.iconText}>Famous Players</Text>
                         <Text style={styles.iconSubText}>Famous players in the world of billiards.</Text>
                     </Pressable>
@@ -48,6 +56,7 @@ const BilliardLayout = () => {
         </View>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -107,7 +116,6 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         width: '100%',
-        marginTop: 20,
     },
     iconbox: {
         flexDirection: 'row',

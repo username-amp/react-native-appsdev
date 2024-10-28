@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Linking } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
 
@@ -9,6 +9,13 @@ const VballLayout = () => {
         navigation.navigate('InsideVball');
     }
 
+    const openHistoryLink = () => {
+        Linking.openURL('https://olympics.com/en/news/what-history-volleyball-game-origin-mintonette-ymca-fivb-olympics');
+    }
+
+    const openAchievementLink = () => {
+        Linking.openURL('http://www.volleyballadvisors.com/volleyball-teams.html');
+    }
     return (
         <View style={styles.container}>
             <View style={styles.card}>
@@ -31,7 +38,7 @@ const VballLayout = () => {
             <View style={styles.iconContainer}>
                 <View style={styles.iconbox}>
                     <Icon name="history" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openHistoryLink}>
                         <Text style={styles.iconText}>History</Text>
                         <Text style={styles.iconSubText}>Volleyball's rich history dates back to 1895, when it was invented by William G. Morgan.</Text>
                     </Pressable>
@@ -39,7 +46,7 @@ const VballLayout = () => {
 
                 <View style={styles.iconbox}>
                     <Icon name="trophy" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openAchievementLink}>
                         <Text style={styles.iconText}>Achievements</Text>
                         <Text style={styles.iconSubText}>Discover the greatest teams and players in volleyball history.</Text>
                     </Pressable>
@@ -107,7 +114,6 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         width: '100%',
-        marginTop: 20,
     },
     iconbox: {
         flexDirection: 'row',

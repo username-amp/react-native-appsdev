@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Linking } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,6 +7,14 @@ const ExerciseLayout = () => {
 
     const handlePress = () => { 
         navigation.navigate('InsideExercise');
+    };
+
+    const openHistoryLink = () => {
+        Linking.openURL('https://en.wikipedia.org/wiki/History_of_physical_training_and_fitness');
+    };
+
+    const openHealthBenefitsLink = () => {
+        Linking.openURL('https://medlineplus.gov/benefitsofexercise.html');
     };
 
     return (
@@ -31,7 +39,7 @@ const ExerciseLayout = () => {
             <View style={styles.iconContainer}>
                 <View style={styles.iconbox}>
                     <Icon name="history" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openHistoryLink}>
                         <Text style={styles.iconText}>History</Text>
                         <Text style={styles.iconSubText}>Exercise has been a part of human culture for centuries.</Text>
                     </Pressable>
@@ -39,7 +47,7 @@ const ExerciseLayout = () => {
 
                 <View style={styles.iconbox}>
                     <Icon name="heartbeat" size={24} color="#690981" />
-                    <Pressable>
+                    <Pressable onPress={openHealthBenefitsLink}>
                         <Text style={styles.iconText}>Health Benefits</Text>
                         <Text style={styles.iconSubText}>Exercise improves cardiovascular health, strengthens muscles, and more.</Text>
                     </Pressable>

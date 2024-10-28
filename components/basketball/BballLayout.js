@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -7,6 +7,14 @@ const BballLayout = () => {
 
   const handlePress = () => {
     navigation.navigate('InsideBball');
+  };
+
+  const openHistoryLink = () => {
+    Linking.openURL('https://basketballmuseumofillinois.com/the-top-10-most-unbelievable-basketball-facts-in-history/'); // Replace with actual URL
+  };
+
+  const openTeamsLink = () => {
+    Linking.openURL('https://today.yougov.com/ratings/sports/fame/basketball-teams/all');
   };
 
   return (
@@ -29,15 +37,15 @@ const BballLayout = () => {
       <View style={styles.iconContainer}>
         <View style={styles.iconbox}>
           <Icon name="history" size={24} color="#690981" />
-          <Pressable>
+          <Pressable onPress={openHistoryLink}>
             <Text style={styles.iconText}>History</Text>
-            <Text style={styles.iconSubText}>Teams try to score by tossing a ball through the opponent's hoop.</Text>
+            <Text style={styles.iconSubText}>The Top 10 Most Unbelievable Basketball Facts in History</Text>
           </Pressable>
         </View>
 
         <View style={styles.iconbox}>
           <Icon name="users" size={24} color="#690981" />
-          <Pressable>
+          <Pressable onPress={openTeamsLink}>
             <Text style={styles.iconText}>Teams</Text>
             <Text style={styles.iconSubText}>Famous teams in basketball history.</Text>
           </Pressable>
@@ -49,7 +57,7 @@ const BballLayout = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F6F1F7', // Light background from gradient
+    backgroundColor: '#F6F1F7',
     height: '100%',
     width: '100%',
     padding: 20,
@@ -67,7 +75,6 @@ const styles = StyleSheet.create({
   pic: {
     height: 150,
     width: 200,
-   
   },
   lagayanngpic: {
     justifyContent: 'center',
@@ -107,7 +114,6 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     width: '100%',
-    marginTop: 20,
   },
   iconbox: {
     flexDirection: 'row',

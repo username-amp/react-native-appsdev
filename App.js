@@ -11,6 +11,7 @@ const App = () => {
     'Roboto-Light': require('./assets/fonts/Roboto-Light.ttf'),
     'OpenSans-Regular': require('./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf'),
     'OpenSans-Italic': require('./assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf'),
+    'Roboto-LightItalic': require('./assets/fonts/Roboto-LightItalic.ttf'),
   });
 
   return <Navigation />;

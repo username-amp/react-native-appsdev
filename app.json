@@ -14,19 +14,40 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.samsung.galaxy",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.samsung.galaxy",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": ""
     },
     "plugins": [
-      "expo-font"
-    ]
+      "@react-native-google-signin/google-signin",
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "expo-router",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d7f420a5-0722-4181-9db8-ed39950911ad"
+      }
+    }
   }
 }

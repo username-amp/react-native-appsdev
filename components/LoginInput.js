@@ -39,7 +39,7 @@ const LoginInput = () => {
   };
 
   if (!loaded) {
-    return null; // Show nothing until fonts are loaded
+    return null;
   }
 
   return (
@@ -49,7 +49,7 @@ const LoginInput = () => {
       </View>
 
       <View style={styles.lagayannglogintext}>
-        <Text style={styles.loginText}>Login</Text>
+        <Text style={styles.loginText}>Sign In</Text>
       </View>
 
       <View style={styles.inputContainer}>
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Roboto-Regular', // This should work after fonts are loaded
+    fontFamily: 'Roboto-Regular',
   },
 });
 

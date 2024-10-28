@@ -10,7 +10,7 @@ const RegisterCurve = () => {
             style={styles.registerSVG}
           >
             <Path
-      d="M0,6 C0,0 252,-13 350,110 L600,100 L0,100 Z"
+                d="M0,6 C0,0 252,-13 350,110 L600,100 L0,100 Z"
               fill="#FFFFFF"
             />
           </Svg>
@@ -20,7 +20,7 @@ const RegisterCurve = () => {
     
     const styles = StyleSheet.create({
       registerSVG: {
-        position: 'absolute',
+       
         left: 0,
         width: '60%',
       },

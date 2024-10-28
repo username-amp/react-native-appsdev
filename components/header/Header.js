@@ -9,9 +9,9 @@ const Header = ({ navigation }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [userModalVisible, setUserModalVisible] = useState(false);
   const [username, setUsername] = useState('');
-  const [slideAnim] = useState(new Animated.Value(-500)); // Start off-screen at the top
+  const [slideAnim] = useState(new Animated.Value(-500));
   const [menuSound, setMenuSound] = useState();
-  const [userSound, setUserSound] = useState(); // New state for user sound
+  const [userSound, setUserSound] = useState();
 
   useEffect(() => {
     const loadSounds = async () => {
@@ -20,8 +20,8 @@ const Header = ({ navigation }) => {
       );
       setMenuSound(menuSound);
 
-      const { sound: userSound } = await Audio.Sound.createAsync( // Load user sound
-        require('../../assets/sound/menuPopup.mp3') // Replace with the actual path to your sound file
+      const { sound: userSound } = await Audio.Sound.createAsync(
+        require('../../assets/sound/menuPopup.mp3')
       );
       setUserSound(userSound);
     };
@@ -30,7 +30,7 @@ const Header = ({ navigation }) => {
 
     return () => {
       menuSound && menuSound.unloadAsync();
-      userSound && userSound.unloadAsync(); // Unload user sound
+      userSound && userSound.unloadAsync();
     };
   }, []);
 
@@ -47,7 +47,7 @@ const Header = ({ navigation }) => {
 
   const handleUserPress = async () => {
     if (userSound) {
-      await userSound.replayAsync(); // Play user sound
+      await userSound.replayAsync();
     }
     const storedUsername = await AsyncStorage.getItem('username');
     if (storedUsername) {
@@ -59,14 +59,14 @@ const Header = ({ navigation }) => {
 
   const slideInModal = () => {
     Animated.spring(slideAnim, {
-      toValue: 0, // Move to the center
+      toValue: 0,
       useNativeDriver: true,
     }).start();
   };
 
   const handleCloseUserModal = () => {
     Animated.spring(slideAnim, {
-      toValue: -500, // Slide back up off-screen
+      toValue: -500,
       useNativeDriver: true,
     }).start(() => {
       setUserModalVisible(false);
@@ -75,7 +75,7 @@ const Header = ({ navigation }) => {
 
   const handleLogout = async () => {
     navigation.navigate('Login');
-    handleCloseUserModal(); // Close the modal after logout
+    handleCloseUserModal();
   };
 
   return (
@@ -84,7 +84,7 @@ const Header = ({ navigation }) => {
         <Icon name="bars" size={24} color="#fff" />
       </Pressable>
 
-      <Text style={styles.headerTitle}>My App</Text>
+     
 
       <Pressable onPress={handleUserPress} style={styles.iconButton}>
         <Icon name="user" size={24} color="#fff" />
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingVertical: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,

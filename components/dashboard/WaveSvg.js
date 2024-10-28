@@ -3,7 +3,7 @@ import { Image, View, StyleSheet } from 'react-native'
 const WaveSvg = () => {
   return (
    <View style={styles.container}>
-     <Image source={require('../assets/poro.gif')} style={styles.image}/>
+     <Image source={require('../../assets/poro.gif')} style={styles.image}/>
    </View>
   )
 }
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
 
-  image: { // Corrected the typo here
+  image: {
     height: 100,
     width: 100,
   }
