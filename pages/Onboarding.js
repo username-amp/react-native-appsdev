@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     marginTop: 20,
     textAlign: 'center',
+    paddingBottom: 10,
   },
   description: {
     fontSize: 16,
