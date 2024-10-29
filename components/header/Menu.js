@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, SectionList, Pressable, Modal, Dimensions, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Dashboard from '../../pages/Dashboard';
 
 const { width } = Dimensions.get('window');
 

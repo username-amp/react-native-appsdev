@@ -61,6 +61,7 @@ const PrivacyPolicy = () => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingBottom: 70,
     padding: 20,
   },
   innerContainer: {

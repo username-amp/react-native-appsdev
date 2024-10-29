@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const RegisterInput = () => {
@@ -15,6 +16,7 @@ const RegisterInput = () => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: '1086216819726-mf0a72sj38hngpnt6bvvq6s5sanatque.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
     });
   }, []);
 
@@ -39,37 +41,42 @@ const RegisterInput = () => {
     }
   };
 
-  async function onGoogleButtonPress() {
+  const onGoogleButtonPress = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
-      
-      // Sign in the user with Google and get user info
-      const userInfo = await GoogleSignin.signIn();
-      
-      // Get the ID token from the user info
-      const { idToken } = userInfo;
-  
-      // Create a Google credential with the ID token
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  
-      // Sign-in the user with the credential
-      await auth().signInWithCredential(googleCredential);
-      
-      console.log('Signed in with Google!', userInfo);
-      // Navigate or perform actions after successful sign in
-      navigation.navigate('Dashboard'); // Replace 'Home' with your desired route
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  // Get the users ID token
+  const signInResult = await GoogleSignin.signIn();
+
+  // Try the new style of google-sign in result, from v13+ of that module
+  idToken = signInResult.data?.idToken;
+  if (!idToken) {
+    // if you are using older versions of google-signin, try old style result
+    idToken = signInResult.idToken;
+  }
+  if (!idToken) {
+    throw new Error('No ID token found');
+  }
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(googleCredential);
+      console.log('Signed in with Google!');
+      navigation.navigate('Dashboard');
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('User cancelled the login flow');
+        console.log('User cancelled the sign-in.');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Sign in is in progress already');
+        console.log('Sign-in in progress.');
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        console.log('Play services not available.');
       } else {
-        console.error(error);
+        console.error('Error signing in with Google:', error.message);
       }
     }
-  }
+  };
   
-
   return (
     <View style={styles.container}>
       <View style={styles.lagayanngpic}>
@@ -109,7 +116,7 @@ const RegisterInput = () => {
         <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
           <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.googleButton} onPress={onGoogleButtonPress}>
+        <TouchableOpacity style={styles.googleButton}>
           <Icon name="google" size={20} color="#fff" style={styles.googleIcon} />
           <Text style={styles.googleButtonText}>Sign in with Google</Text>
         </TouchableOpacity>
@@ -186,7 +193,7 @@ const styles = StyleSheet.create({
   },
   googleButton: {
     flexDirection: 'row',
-    backgroundColor: '#DB4437',
+    backgroundColor: '#956AA1',
     padding: 10,
     borderRadius: 30,
     marginTop: 10,

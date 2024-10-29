@@ -3,12 +3,11 @@ import { View, Text, Image, StyleSheet, ScrollView, KeyboardAvoidingView, Platfo
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/header/Header';
 import DashboardWave from '../components/DashboardWave';
-// Replace these imports with the actual image paths for each team member
 import member1Image from '../assets/monica.jpg';
 import member2Image from '../assets/teAlaye.png';
 import member3Image from '../assets/bagtong.jpg';
-import member4Image from '../assets/adrian.jpg';
-import member5Image from '../assets/malupiton.jpg';
+import member4Image from '../assets/adrian.png';
+import member5Image from '../assets/molo.jpg';
 import member6Image from '../assets/me.jpg';
 const teamMembers = [
   {
@@ -141,11 +140,11 @@ const AboutUs = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>NAVIGATION</Text>
           <Text style={styles.sectionDescription}>
-          The navigation in your app uses a side navigation drawer that organizes important sections like "Home," "History," "Notifications," "About Us," and "Log Out." This design keeps 
-          the main screen tidy while making it easy for users to find what they need, especially for first-time users.To enhance usability, each menu item has clear labels and recognizable 
-          icons, helping users quickly understand their functions. Active sections are highlighted, so users can easily see where they are in the app.The navigation is simple, allowing
-          users to find information quickly without unnecessary steps. A back navigation option helps users return to the previous screen easily, reducing frustration. The navigation
-          is designed to work well and ensuring a smooth experience for the users.
+          The navigation in your app uses a side navigation drawer that organizes important sections like "Home," "About Us,"as the main section and "Sports" category to easily find what the users want to read.The user 
+          icon serves as the current account for the user's log in name and also serves as the log out button when clicked. This design keeps the main screen tidy while making it easy for users to find what they need, 
+          especially for first-time users.To enhance usability, each menu item has clear labels and recognizable icons, helping users quickly understand their functions. Active sections are highlighted, so users can 
+          easily see where they are in the app.The navigation is simple, allowing users to find information quickly without unnecessary steps. A back navigation option helps users return to the previous screen easily, 
+          reducing frustration. The navigation is designed to work well and ensuring a smooth experience for the users.
           </Text>
         </View>
         <View style={styles.paddingBottom} />

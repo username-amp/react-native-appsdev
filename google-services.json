@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "1086216819726-vp6iuftn0mn7ij0il9rv8of8irdof00r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samsung.galaxy",
+            "certificate_hash": "e2d7b25eaef3e6cfb5ede6c70be7c0fc72bbfe73"
+          }
+        },
+        {
           "client_id": "1086216819726-mf0a72sj38hngpnt6bvvq6s5sanatque.apps.googleusercontent.com",
           "client_type": 3
         }
